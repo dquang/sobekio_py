@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='sobekio',
-      version='0.1.0',
+      version='0.1.1',
       description='Support reading output (.HIS) from Sobek Version 2',
       url='http://github.com/dinhquanght/sobekio_py',
       author='D. Quang Duong',

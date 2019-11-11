@@ -83,6 +83,7 @@ class SobekPrj:
                     'lid': 'qlat.his' \n
                     'pid': 'pump.his' \n
                     'fmid': 'flowmap.his' \n
+                    'fhid': 'flowhis.his' \n
                     'moid': 'morpmap.his' \n
                     'smid': 'gsedmap.his' \n
                     'shid': 'gsedhis.his' \n
@@ -125,7 +126,7 @@ class SobekPrj:
                 i_df = his.get_data_by_id(id_list, param)
                 i_df = i_df.assign(case=case_names[k])
                 df_list.append(i_df)
-            df_out = pd.concat(df_list, axis=0)
+            df_out = pd.concat(df_list, axis=0, sort=False)
         return df_out
 
 
@@ -182,6 +183,7 @@ class SobekCase():
                   'latid': 'qlat.his',
                   'lid': 'qlat.his',
                   'pid': 'pump.his',
+                  'fhid': 'flowhis.his',
                   'fmid': 'flowmap.his',
                   'moid': 'morpmap.his',
                   'smid': 'gsedmap.his',
@@ -205,6 +207,3 @@ class SobekCase():
             ftype_file = self.get_file_path(ftype)
         if ftype_file:
             self.wk_file = os.path.join(self.path, ftype_file)
-
-
-

@@ -114,16 +114,16 @@ class HisFile():
             if self.hia_path:
                 his_cp = cp.ConfigParser()
                 his_cp.read(self.hia_path, encoding='windows-1252')
-            if 'Long Parameters' in his_cp.sections():
-                if his_cp.items('Long Parameters'):
-                    long_par_df = pd.DataFrame(
-                            his_cp.items('Long Parameters'),
-                            columns=['par_id', 'long_par'])
-                    long_par_df.par_id = long_par_df.par_id.astype(int)
-                    long_par_df = long_par_df.set_index('par_id')
-                    par_df = pd.merge(par_df, long_par_df, left_index=True,
-                                     right_index=True, how='outer')
-                    par_df.long_par[par_df.long_par.isnull()] = ''
+                if 'Long Parameters' in his_cp.sections():
+                    if his_cp.items('Long Parameters'):
+                        long_par_df = pd.DataFrame(
+                                his_cp.items('Long Parameters'),
+                                columns=['par_id', 'long_par'])
+                        long_par_df.par_id = long_par_df.par_id.astype(int)
+                        long_par_df = long_par_df.set_index('par_id')
+                        par_df = pd.merge(par_df, long_par_df, left_index=True,
+                                         right_index=True, how='outer')
+                        par_df.long_par[par_df.long_par.isnull()] = ''
             if 'long_par' not in par_df.columns:
                 par_df['long_par'] = ['Long ' + i for i in par_df.short_par]
             self.par_df = par_df
@@ -333,6 +333,6 @@ class HisFile():
             all_names = id_list.copy()
             all_names.insert(0, 'ts')
             if n_pars > 1:
-                all_names.append('parameter')
+                all_names.insert(1, 'parameter')
                 df_out = df_out.reindex(all_names, axis=1)
         return df_out

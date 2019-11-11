@@ -1,2 +1,2 @@
-from sobek_prj import SobekPrj
-from his_file import HisFile
+from sobekio.sobek_prj import SobekPrj
+from sobekio.his_file import HisFile
